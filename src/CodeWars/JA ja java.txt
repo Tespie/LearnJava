@@ -1,0 +1,50 @@
+return str.replaceAll("(?i)[aeiouAEIOU]" , ""); // replace all vowels
+
+--------------
+int change = 0;
+        int sum = 0;
+        int count25 = 0;
+        int count50 = 0;
+        int count100 = 0;
+        boolean flag = true;
+        for (int b : peopleInLine) {
+//            System.out.println(b);
+
+            if (b != 25) {
+                change = b - 25;
+                if (sum < change) {
+                    flag = false;
+                    break;
+                }
+
+                if (change == 25) {
+                    if (count25 > 0) {
+                        count25--;
+                        count50++;
+                    } else {
+                        flag = false;
+                        break;
+                    }
+                } else {
+                    if (count50 > 0) {
+                        count50--;
+                        if (count25 > 0) {
+                            count25--;
+                            count100++;
+                        } else {
+                            flag = false;
+                            break;
+                        }
+                    } else {
+                        flag = false;
+                        break;
+                    }
+                }
+                sum = b + change;
+            } else {
+                sum = b + 25;
+            }
+
+        }
+        return flag ? "Yes" : "No";
+-------

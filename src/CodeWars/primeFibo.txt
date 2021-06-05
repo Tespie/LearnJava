@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+    
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+        int ip = scan.nextInt();
+        if(ip %2 == 1){
+        fibo((ip/2) + 1);    
+        } else {
+            prime(ip/2);
+        }
+}
+    
+    static void prime(int n){
+        int count = 0;
+        boolean found = false;
+        for(int i=2;i<=1000;i++){
+            found = false;
+            for(int j=2;j<i;j++){
+                if(i % j == 0){
+                    found = true;
+                    break;
+                }
+            }
+            if(found == false){
+                if(++count == n ){
+                    
+                    System.out.println(i);
+                    break;
+                }
+            }
+        }
+        
+    }
+
+    static void prime2(int n){
+       int count = 0;
+       int num = 1;
+       int i;
+       while(count < n){
+           num  = num + 1;
+           for( i =2; i <= num;i++){
+               if(n % i == 0){
+                   break;
+               }
+           }
+           if(num == i){
+               count = count + 1;
+           }
+           
+       }
+       System.out.println(num);
+    }
+    
+    static void fibo (int n){
+        int t1=0;
+        int t2=1;
+        int next;
+        for(int i=1 ; i <= n ; i++){
+            next = t1+t2;
+            t1 = t2;
+            t2= next;
+            // System.out.print(t1+" ");
+        }
+        System.out.println(t1);
+    }
+    
+}
